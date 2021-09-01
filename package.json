@@ -1,0 +1,29 @@
+{
+    "name": "com.company.tool",
+    "version": "1.0.0",
+    "displayName": "Tool Name",
+    "description": "Description of tool here.",
+    "unity": "2018.4",
+    "keywords": ["words","that","describe", "tool"],
+    "dependencies": {
+        "com.unity.textmeshpro": "1.4.1"
+    },
+    "samples": [
+        {
+            "displayName": "Basic Sample",
+            "description": "Basic sample of the package or tool...",
+            "path": "Samples~/Basic Sample"
+        },
+        {
+            "displayName": "Advanced Sample",
+            "description": "Advanced sample of the package or tool...",
+            "path": "Samples~/Advanced Sample"
+        }
+    ],
+    "author": {
+        "name": "Your Name",
+        "email": "email@gmail.com",
+        "url": "https://yourwebsite.com"
+    },
+    
+}
