@@ -1,11 +1,9 @@
 {
-    "name": "com.company.tool.Tests",
-    "references": [
-        "com.company.tool"
+    "name": "com.breakstepstudios.playfab-client-api-task-wrapper",
+    "references": [ 
+        "PlayFab"
     ],
-    "optionalUnityReferences": [
-        "TestAssemblies"
-    ],
+    "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

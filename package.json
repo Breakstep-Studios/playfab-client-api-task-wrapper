@@ -1,29 +1,15 @@
 {
-    "name": "com.company.tool",
+    "name": "com.breakstepstudios.playfab-client-api-task-wrapper",
     "version": "1.0.0",
-    "displayName": "Tool Name",
-    "description": "Description of tool here.",
+    "displayName": "PlayFab Client API Task Wrapper",
+    "description": "Wraps the PlayFab client API methods to return tasks instead of callback functions.",
     "unity": "2018.4",
-    "keywords": ["words","that","describe", "tool"],
-    "dependencies": {
-        "com.unity.textmeshpro": "1.4.1"
-    },
-    "samples": [
-        {
-            "displayName": "Basic Sample",
-            "description": "Basic sample of the package or tool...",
-            "path": "Samples~/Basic Sample"
-        },
-        {
-            "displayName": "Advanced Sample",
-            "description": "Advanced sample of the package or tool...",
-            "path": "Samples~/Advanced Sample"
-        }
-    ],
+    "keywords": ["playfab","client","task", "async"],
+    "dependencies": { },
+    "samples": [ ],
     "author": {
-        "name": "Your Name",
-        "email": "email@gmail.com",
-        "url": "https://yourwebsite.com"
-    },
-    
+        "name": "Breakstep Studios",
+        "email": "support@breakstepstudios.com",
+        "url": "https://breakstepstudios.com"
+    }
 }

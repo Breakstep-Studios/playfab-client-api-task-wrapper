@@ -1,12 +1,12 @@
 {
-    "name": "com.company.tool",
+    "name": "com.breakstepstudios.playfab-client-api-task-wrapper.Editor",
     "references": [
-        "DOTweenPro.Scripts",
-        "DOTween.Modules",
-        "Unity.TextMeshPro"
+        "com.breakstepstudios.playfab-client-api-task-wrapper"
     ],
     "optionalUnityReferences": [],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

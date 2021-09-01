@@ -1,0 +1,19 @@
+{
+    "name": "com.breakstepstudios.playfab-client-api-task-wrapper.Editor.Tests",
+    "references": [
+        "com.breakstepstudios.playfab-client-api-task-wrapper",
+        "com.breakstepstudios.playfab-client-api-task-wrapper.Editor"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}
