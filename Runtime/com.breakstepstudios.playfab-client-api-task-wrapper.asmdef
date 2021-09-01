@@ -1,6 +1,8 @@
 {
     "name": "com.breakstepstudios.playfab-client-api-task-wrapper",
-    "references": [ ],
+    "references": [ 
+        "PlayFab"
+    ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],
