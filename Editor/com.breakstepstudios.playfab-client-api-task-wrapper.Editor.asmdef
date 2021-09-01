@@ -1,7 +1,7 @@
 {
-    "name": "com.company.tool.Editor",
+    "name": "com.breakstepstudios.playfab-client-api-task-wrapper.Editor",
     "references": [
-        "com.company.tool"
+        "com.breakstepstudios.playfab-client-api-task-wrapper"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [

@@ -1,7 +1,7 @@
 {
-    "name": "com.company.tool.Tests",
+    "name": "com.breakstepstudios.playfab-client-api-task-wrapper.Tests",
     "references": [
-        "com.company.tool"
+        "com.breakstepstudios.playfab-client-api-task-wrapper"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"

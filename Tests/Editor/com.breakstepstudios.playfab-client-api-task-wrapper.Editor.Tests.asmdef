@@ -1,8 +1,8 @@
 {
-    "name": "com.company.tool.Editor.Tests",
+    "name": "com.breakstepstudios.playfab-client-api-task-wrapper.Editor.Tests",
     "references": [
-        "com.company.tool",
-        "com.company.tool.Editor"
+        "com.breakstepstudios.playfab-client-api-task-wrapper",
+        "com.breakstepstudios.playfab-client-api-task-wrapper.Editor"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"

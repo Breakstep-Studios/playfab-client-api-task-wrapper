@@ -1,10 +1,6 @@
 {
-    "name": "com.company.tool",
-    "references": [
-        "DOTweenPro.Scripts",
-        "DOTween.Modules",
-        "Unity.TextMeshPro"
-    ],
+    "name": "com.breakstepstudios.playfab-client-api-task-wrapper",
+    "references": [ ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],
