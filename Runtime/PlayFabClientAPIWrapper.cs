@@ -72,5 +72,35 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
             });
             return taskCompletionSource.Task;
         }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.GetTitleData"/>
+        public static Task<PlayFabCommonResponse<UpdateCharacterDataResult>> UpdateCharacterDataAsync(
+            UpdateCharacterDataRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<UpdateCharacterDataResult>>();
+            PlayFabClientAPI.UpdateCharacterData(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<UpdateCharacterDataResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<UpdateCharacterDataResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.GetTime"/>
+        public static Task<PlayFabCommonResponse<GetTimeResult>> GetTimeAsync(
+            GetTimeRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<GetTimeResult>>();
+            PlayFabClientAPI.GetTime(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetTimeResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetTimeResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
     }
 }
