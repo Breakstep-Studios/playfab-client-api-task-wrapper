@@ -7,11 +7,45 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
 {
     public static class PlayFabClientAPIWrapper
     {
-        /// <inheritdoc cref="PlayFabClientAPI.ExecuteCloudScript"/>
+        /// <inheritdoc cref="PlayFabClientAPI.LoginWithCustomID"/>
         public static Task<PlayFabCommonResponse<LoginResult>> LoginWithCustomIdAsync(LoginWithCustomIDRequest request)
         {
             var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<LoginResult>>();
             PlayFabClientAPI.LoginWithCustomID(request, 
+                (result) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<LoginResult>(result,null));
+                },
+                (error) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<LoginResult>(null,error));
+                }
+            );
+            return taskCompletionSource.Task;
+        }
+
+        /// <inheritdoc cref="PlayFabClientAPI.LoginWithPlayFab"/>
+        public static Task<PlayFabCommonResponse<LoginResult>> LoginWithPlayFabAsync(LoginWithPlayFabRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<LoginResult>>();
+            PlayFabClientAPI.LoginWithPlayFab(request,
+                (result) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<LoginResult>(result,null));
+                },
+                (error) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<LoginResult>(null,error));
+                }
+            );
+            return taskCompletionSource.Task;
+        }
+
+        /// <inheritdoc cref="PlayFabClientAPI.LoginWithEmailAddress"/>
+        public static Task<PlayFabCommonResponse<LoginResult>> LoginWithEmailAddressAsync(LoginWithEmailAddressRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<LoginResult>>();
+            PlayFabClientAPI.LoginWithEmailAddress(request,
                 (result) =>
                 {
                     taskCompletionSource.SetResult(new PlayFabCommonResponse<LoginResult>(result,null));
@@ -84,6 +118,21 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
             }, (error) =>
             {
                 taskCompletionSource.SetResult(new PlayFabCommonResponse<UpdateCharacterDataResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.GetCharacterData"/>
+        public static Task<PlayFabCommonResponse<GetCharacterDataResult>> GetCharacterDataAsync(
+            GetCharacterDataRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<GetCharacterDataResult>>();
+            PlayFabClientAPI.GetCharacterData(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetCharacterDataResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetCharacterDataResult>(null, error));
             });
             return taskCompletionSource.Task;
         }
