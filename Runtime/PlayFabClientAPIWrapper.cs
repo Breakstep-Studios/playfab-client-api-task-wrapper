@@ -76,17 +76,17 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
         }
         
         /// <inheritdoc cref="PlayFabClientAPI.ExecuteCloudScript{TOut}"/>
-        public static Task<PlayFabCommonResponse<ExecuteCloudScriptResult>> ExecuteCloudScriptAsync<T>(ExecuteCloudScriptRequest request)
+        public static Task<PlayFabCloudScriptResponse<T>> ExecuteCloudScriptAsync<T>(ExecuteCloudScriptRequest request)
         {
-            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<ExecuteCloudScriptResult>>();
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCloudScriptResponse<T>>();
             PlayFabClientAPI.ExecuteCloudScript<T>(request, 
                 (result) =>
                 {
-                    taskCompletionSource.SetResult(new PlayFabCommonResponse<ExecuteCloudScriptResult>(result,null));
+                    taskCompletionSource.SetResult(new PlayFabCloudScriptResponse<T>(result,null));
                 },
                 (error) =>
                 {
-                    taskCompletionSource.SetResult(new PlayFabCommonResponse<ExecuteCloudScriptResult>(null,error));
+                    taskCompletionSource.SetResult(new PlayFabCloudScriptResponse<T>(null,error));
                 }
             );
             return taskCompletionSource.Task;
