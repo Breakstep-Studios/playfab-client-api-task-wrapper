@@ -136,6 +136,35 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
             });
             return taskCompletionSource.Task;
         }
+
+        /// <inheritdoc cref="PlayFabClientAPI.GetLeaderboardAroundPlayer"/>
+        public static Task<PlayFabCommonResponse<GetLeaderboardAroundPlayerResult>> GetLeaderboardAroundPlayerAsync(
+            GetLeaderboardAroundPlayerRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<GetLeaderboardAroundPlayerResult>>();
+            PlayFabClientAPI.GetLeaderboardAroundPlayer(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetLeaderboardAroundPlayerResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetLeaderboardAroundPlayerResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.GetLeaderboard"/>
+        public static Task<PlayFabCommonResponse<GetLeaderboardResult>> GetLeaderboardAsync(GetLeaderboardRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<GetLeaderboardResult>>();
+            PlayFabClientAPI.GetLeaderboard(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetLeaderboardResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetLeaderboardResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
         
         /// <inheritdoc cref="PlayFabClientAPI.GetTime"/>
         public static Task<PlayFabCommonResponse<GetTimeResult>> GetTimeAsync(
