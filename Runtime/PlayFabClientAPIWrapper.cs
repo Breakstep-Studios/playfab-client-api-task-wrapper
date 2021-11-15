@@ -107,7 +107,7 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
             return taskCompletionSource.Task;
         }
         
-        /// <inheritdoc cref="PlayFabClientAPI.GetTitleData"/>
+        /// <inheritdoc cref="PlayFabClientAPI.UpdateCharacterData"/>
         public static Task<PlayFabCommonResponse<UpdateCharacterDataResult>> UpdateCharacterDataAsync(
             UpdateCharacterDataRequest request)
         {
