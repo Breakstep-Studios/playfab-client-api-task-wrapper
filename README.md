@@ -5,7 +5,7 @@ The PlayFab client API Task wrapper wraps the Unity client API to convert the as
 In most cases it would be preferrable to utilize the [PlayFab C# SDK](https://docs.microsoft.com/en-us/gaming/playfab/sdks/c-sharp/) ([Additional notes here](https://community.playfab.com/questions/47743/unity-stripping-doesnt-work-on-low-setting.html)) within Unity. This tool is most beneficial for projects that have already gone the Unity SDK route and are looking to gradually move code base to async await pattern. 
 
 # Quick Start
-Add the following line to your Unity package `manifest.json`
+Add the following line to your Unity package `Packages/manifest.json`
 ```json
 {
   "dependencies": {
