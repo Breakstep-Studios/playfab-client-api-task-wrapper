@@ -24,7 +24,7 @@ namespace ThomasBrown.PlayFab
         
         public PlayFabCloudScriptResponse(ExecuteCloudScriptResult result, PlayFabError error) : base(result, error)
         {
-            functionResult = (T)result.FunctionResult;
+            functionResult = (T)result?.FunctionResult;
         }
 
         /// <summary>
