@@ -34,7 +34,7 @@ namespace ThomasBrown.PlayFab
         /// </summary>
         public override bool ContainsError
         {
-            get { return Result.Error != null || base.ContainsError; }
+            get { return Result?.Error != null || base.ContainsError; }
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace ThomasBrown.PlayFab
         {
             get
             {
-                if (Result.Error == null)
+                if (Result?.Error == null)
                 {
                     return PlayFabCloudScriptResponseLogsErrorCode.NoError;
                 }
