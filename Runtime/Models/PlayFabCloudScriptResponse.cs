@@ -63,7 +63,10 @@ namespace ThomasBrown.PlayFab
                 var serializer = PluginManager.GetPlugin<ISerializerPlugin>(PluginContract.PlayFab_Serializer);
                 try
                 {
-                    var logsErrorData = serializer.DeserializeObject<LogsErrorData>(Result.Logs[0].Data.ToString());
+                    //explicitly instantiate to fix bug where unity strips out LogsErrorData because it thinks it's not used
+                    //see https://community.playfab.com/comments/60164/view.html
+                    var logsErrorData = new LogsErrorData();
+                    logsErrorData = serializer.DeserializeObject<LogsErrorData>(Result.Logs[0].Data.ToString());
                     return logsErrorData.ErrorCode;
                 }
                 catch (Exception)
