@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using PlayFab;
 using PlayFab.ClientModels;
 using ThomasBrown.PlayFab;
@@ -205,6 +205,20 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
             }, (error) =>
             {
                 taskCompletionSource.SetResult(new PlayFabCommonResponse<AddFriendResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.RemoveFriend"/>
+        public static Task<PlayFabCommonResponse<RemoveFriendResult>> RemoveFriendAsync(RemoveFriendRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<RemoveFriendResult>>();
+            PlayFabClientAPI.RemoveFriend(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<RemoveFriendResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<RemoveFriendResult>(null, error));
             });
             return taskCompletionSource.Task;
         }
