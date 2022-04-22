@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using PlayFab;
 using PlayFab.ClientModels;
 using ThomasBrown.PlayFab;
@@ -194,6 +194,21 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
             });
             return taskCompletionSource.Task;
         }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.SetFriendTags"/>
+        public static Task<PlayFabCommonResponse<SetFriendTagsResult>> SetFriendTagsAsync(SetFriendTagsRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<SetFriendTagsResult>>();
+            PlayFabClientAPI.SetFriendTags(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<SetFriendTagsResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<SetFriendTagsResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
         /// <inheritdoc cref="PlayFabClientAPI.GetTime"/>
         public static Task<PlayFabCommonResponse<GetTimeResult>> GetTimeAsync(
             GetTimeRequest request)
