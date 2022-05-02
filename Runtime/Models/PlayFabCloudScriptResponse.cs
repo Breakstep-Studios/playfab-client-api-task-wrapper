@@ -1,4 +1,5 @@
-﻿using PlayFab;
+﻿using System;
+using PlayFab;
 using PlayFab.ClientModels;
 
 namespace ThomasBrown.PlayFab
@@ -24,7 +25,14 @@ namespace ThomasBrown.PlayFab
         
         public PlayFabCloudScriptResponse(ExecuteCloudScriptResult result, PlayFabError error) : base(result, error)
         {
-            functionResult = (T)result?.FunctionResult;
+            try
+            {
+                functionResult = (T)result?.FunctionResult;
+            }
+            catch (Exception)
+            {
+                functionResult = default;
+            }
         }
 
         /// <summary>
