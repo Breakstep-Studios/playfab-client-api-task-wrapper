@@ -16,7 +16,7 @@ namespace ThomasBrown.PlayFab
         /// </summary>
         public override bool ContainsError
         {
-            get { return Result.Error != null || base.ContainsError; }
+            get { return Result?.Error != null || base.ContainsError; }
         }
         
         /// <summary>
