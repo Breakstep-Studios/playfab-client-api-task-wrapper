@@ -67,7 +67,14 @@ namespace ThomasBrown.PlayFab
         
         public PlayFabCloudScriptResponse(ExecuteCloudScriptResult result, PlayFabError error) : base(result, error)
         {
-            functionResult = (T)result?.FunctionResult;
+            try
+            {
+                functionResult = (T)result?.FunctionResult;
+            }
+            catch (Exception)
+            {
+                functionResult = default;
+            }
         }
 
         public T FunctionResult
