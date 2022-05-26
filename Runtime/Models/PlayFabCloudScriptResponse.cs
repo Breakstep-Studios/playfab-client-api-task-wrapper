@@ -16,27 +16,9 @@ namespace ThomasBrown.PlayFab
         /// </summary>
         public override bool ContainsError
         {
-            get { return Result.Error != null || base.ContainsError; }
-        }
-    }
-    
-    public class PlayFabCloudScriptResponse<T> : PlayFabCommonResponse<ExecuteCloudScriptResult>
-    {
-        private T functionResult;
-        
-        public PlayFabCloudScriptResponse(ExecuteCloudScriptResult result, PlayFabError error) : base(result, error)
-        {
-            functionResult = (T)result?.FunctionResult;
-        }
-
-        /// <summary>
-        /// Checks if we had an error in our response, or if we had a script execution error
-        /// </summary>
-        public override bool ContainsError
-        {
             get { return Result?.Error != null || base.ContainsError; }
         }
-
+        
         /// <summary>
         /// The error code contained in our logs if any <see cref="PlayFabCloudScriptResponseLogsErrorCode"/> code example for more info.
         /// </summary>
@@ -75,6 +57,23 @@ namespace ThomasBrown.PlayFab
                 }
 
                 return PlayFabCloudScriptResponseLogsErrorCode.Unknown; 
+            }
+        }
+    }
+    
+    public class PlayFabCloudScriptResponse<T> : PlayFabCloudScriptResponse
+    {
+        private T functionResult;
+        
+        public PlayFabCloudScriptResponse(ExecuteCloudScriptResult result, PlayFabError error) : base(result, error)
+        {
+            try
+            {
+                functionResult = (T)result?.FunctionResult;
+            }
+            catch (Exception)
+            {
+                functionResult = default;
             }
         }
 
