@@ -181,6 +181,62 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
             return taskCompletionSource.Task;
         }
         
+        /// <inheritdoc cref="PlayFabClientAPI.GetFriendsList"/>
+        public static Task<PlayFabCommonResponse<GetFriendsListResult>> GetFriendsListAsync(GetFriendsListRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<GetFriendsListResult>>();
+            PlayFabClientAPI.GetFriendsList(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetFriendsListResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetFriendsListResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.AddFriend"/>
+        public static Task<PlayFabCommonResponse<AddFriendResult>> AddFriendAsync(AddFriendRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<AddFriendResult>>();
+            PlayFabClientAPI.AddFriend(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<AddFriendResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<AddFriendResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.RemoveFriend"/>
+        public static Task<PlayFabCommonResponse<RemoveFriendResult>> RemoveFriendAsync(RemoveFriendRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<RemoveFriendResult>>();
+            PlayFabClientAPI.RemoveFriend(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<RemoveFriendResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<RemoveFriendResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.SetFriendTags"/>
+        public static Task<PlayFabCommonResponse<SetFriendTagsResult>> SetFriendTagsAsync(SetFriendTagsRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<SetFriendTagsResult>>();
+            PlayFabClientAPI.SetFriendTags(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<SetFriendTagsResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<SetFriendTagsResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
         /// <inheritdoc cref="PlayFabClientAPI.GetTime"/>
         public static Task<PlayFabCommonResponse<GetTimeResult>> GetTimeAsync(
             GetTimeRequest request)
