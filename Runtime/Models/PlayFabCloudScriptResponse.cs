@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Linq;
 using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine;
@@ -48,7 +49,7 @@ namespace ThomasBrown.PlayFab
                     //explicitly instantiate to fix bug where unity strips out LogsErrorData because it thinks it's not used
                     //see https://community.playfab.com/comments/60164/view.html
                     var logsErrorData = new LogsErrorData();
-                    logsErrorData = serializer.DeserializeObject<LogsErrorData>(Result.Logs[0].Data.ToString());
+                    logsErrorData = serializer.DeserializeObject<LogsErrorData>(Result.Logs.Last().Data.ToString());
                     return logsErrorData.ErrorCode;
                 }
                 catch (Exception)
@@ -85,6 +86,10 @@ namespace ThomasBrown.PlayFab
     
     /// <summary>
     /// Allows us to map a cloud script error code using log.error(message,object errorCodeDataObject)
+    /// <remarks>
+    /// PlayFab ErrorCodes = 1 - 19999 (Should directly map to <see cref="PlayFabErrorCode"/>.<br/>
+    /// Custom error codes = -1 and 20000+.
+    /// </remarks>
     /// <code>
     /// function throwError(message){
     ///     let errorDataObject = {};
@@ -101,8 +106,11 @@ namespace ThomasBrown.PlayFab
         NoError = -1,
         Unknown = 1,
         InvalidParams = 1000,
-        PlayerStatsNotFoundForLeaderboard = 1001,
-        LeaderboardEmpty = 1002
+        AccountNotFound = 1001,
+        UsersAlreadyFriends = 1183,
+        //--- Our error codes below ---
+        PlayerStatsNotFoundForLeaderboard = 20001,
+        LeaderboardEmpty = 20002
     }
 
     /// <summary>
