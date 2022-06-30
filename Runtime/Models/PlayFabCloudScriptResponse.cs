@@ -33,12 +33,15 @@ namespace ThomasBrown.PlayFab
                     return PlayFabCloudScriptResponseLogsErrorCode.NoError;
                 }
 
-                if (Result.Logs.Count <= 0)
+                var resultErrorLogs = Result.Logs.Where(x => x.Level == "Error").ToList();
+                if (resultErrorLogs.Count <= 0)
                 {
                     return PlayFabCloudScriptResponseLogsErrorCode.Unknown;
                 }
-
-                if (Result.Logs[0].Data == null)
+                
+                // we look at the last error in logs as that's where error codes thrown via cloud script should be located.
+                var lastResultErrorLog = resultErrorLogs.Last();
+                if (lastResultErrorLog.Data == null)
                 {
                     return PlayFabCloudScriptResponseLogsErrorCode.Unknown;
                 }
@@ -50,8 +53,10 @@ namespace ThomasBrown.PlayFab
                     //explicitly instantiate to fix bug where unity strips out LogsErrorData because it thinks it's not used
                     //see https://community.playfab.com/comments/60164/view.html
                     var logsErrorData = new LogsErrorData();
-                    logsErrorData = serializer.DeserializeObject<LogsErrorData>(Result.Logs.Last().Data.ToString());
-                    return logsErrorData.ErrorCode;
+                    logsErrorData = serializer.DeserializeObject<LogsErrorData>(lastResultErrorLog.Data.ToString());
+                    
+                    //if our ErrorCode is == 0 this is likely an error code from PlayFab so just say Unknown
+                    return logsErrorData.ErrorCode == 0 ? PlayFabCloudScriptResponseLogsErrorCode.Unknown : logsErrorData.ErrorCode;
                 }
                 catch (Exception)
                 {
