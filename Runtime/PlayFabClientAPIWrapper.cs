@@ -196,6 +196,36 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
             return taskCompletionSource.Task;
         }
         
+        /// <inheritdoc cref="PlayFabClientAPI.ValidateGooglePlayPurchase"/>
+        public static Task<PlayFabCommonResponse<ValidateGooglePlayPurchaseResult>> ValidateGooglePlayPurchaseAsync(
+            ValidateGooglePlayPurchaseRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<ValidateGooglePlayPurchaseResult>>();
+            PlayFabClientAPI.ValidateGooglePlayPurchase(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<ValidateGooglePlayPurchaseResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<ValidateGooglePlayPurchaseResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.ValidateIOSReceipt"/>
+        public static Task<PlayFabCommonResponse<ValidateIOSReceiptResult>> ValidateIOSReceiptAsync(
+            ValidateIOSReceiptRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<ValidateIOSReceiptResult>>();
+            PlayFabClientAPI.ValidateIOSReceipt(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<ValidateIOSReceiptResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<ValidateIOSReceiptResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
         /// <inheritdoc cref="PlayFabClientAPI.GetTime"/>
         public static Task<PlayFabCommonResponse<GetTimeResult>> GetTimeAsync(
             GetTimeRequest request)
