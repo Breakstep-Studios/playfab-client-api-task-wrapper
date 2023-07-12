@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using PlayFab;
 using PlayFab.ClientModels;
 using ThomasBrown.PlayFab;
@@ -233,6 +233,51 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
             }, (error) =>
             {
                 taskCompletionSource.SetResult(new PlayFabCommonResponse<SetFriendTagsResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.PurchaseItem"/>
+        public static Task<PlayFabCommonResponse<PurchaseItemResult>> PurchaseItemAsync(
+            PurchaseItemRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<PurchaseItemResult>>();
+            PlayFabClientAPI.PurchaseItem(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<PurchaseItemResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<PurchaseItemResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.ValidateGooglePlayPurchase"/>
+        public static Task<PlayFabCommonResponse<ValidateGooglePlayPurchaseResult>> ValidateGooglePlayPurchaseAsync(
+            ValidateGooglePlayPurchaseRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<ValidateGooglePlayPurchaseResult>>();
+            PlayFabClientAPI.ValidateGooglePlayPurchase(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<ValidateGooglePlayPurchaseResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<ValidateGooglePlayPurchaseResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.ValidateIOSReceipt"/>
+        public static Task<PlayFabCommonResponse<ValidateIOSReceiptResult>> ValidateIOSReceiptAsync(
+            ValidateIOSReceiptRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<ValidateIOSReceiptResult>>();
+            PlayFabClientAPI.ValidateIOSReceipt(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<ValidateIOSReceiptResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<ValidateIOSReceiptResult>(null, error));
             });
             return taskCompletionSource.Task;
         }
