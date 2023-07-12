@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using PlayFab;
 using PlayFab.ClientModels;
+using PlayFab.EconomyModels;
 using ThomasBrown.PlayFab;
 
 namespace BreakstepStudios.Scripts.Runtime.PlayFab
@@ -192,6 +193,21 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
             }, (error) =>
             {
                 taskCompletionSource.SetResult(new PlayFabCommonResponse<GetCatalogItemsResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.GetUserInventory"/>
+        public static Task<PlayFabCommonResponse<GetUserInventoryResult>> GetUserInventoryAsync(
+            GetUserInventoryRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<GetUserInventoryResult>>();
+            PlayFabClientAPI.GetUserInventory(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetUserInventoryResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetUserInventoryResult>(null, error));
             });
             return taskCompletionSource.Task;
         }
