@@ -342,5 +342,19 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
             });
             return taskCompletionSource.Task;
         }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.GetStoreItems"/>
+        public static Task<PlayFabCommonResponse<GetStoreItemsResult>> GetStoreItemsAsync(GetStoreItemsRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<GetStoreItemsResult>>();
+            PlayFabClientAPI.GetStoreItems(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetStoreItemsResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetStoreItemsResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
     }
 }
