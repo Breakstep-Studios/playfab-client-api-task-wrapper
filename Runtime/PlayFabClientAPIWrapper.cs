@@ -1,7 +1,6 @@
 using System.Threading.Tasks;
 using PlayFab;
 using PlayFab.ClientModels;
-using PlayFab.EconomyModels;
 using ThomasBrown.PlayFab;
 
 namespace BreakstepStudios.Scripts.Runtime.PlayFab
