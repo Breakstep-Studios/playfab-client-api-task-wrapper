@@ -58,6 +58,23 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
             return taskCompletionSource.Task;
         }
 
+        /// <inheritdoc cref="PlayFabClientAPI.LoginWithSteam"/>
+        public static Task<PlayFabCommonResponse<LoginResult>> LoginWithSteamAsync(LoginWithSteamRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<LoginResult>>();
+            PlayFabClientAPI.LoginWithSteam(request,
+                (result) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<LoginResult>(result,null));
+                },
+                (error) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<LoginResult>(null,error));
+                }
+            );
+            return taskCompletionSource.Task;
+        }
+
         /// <inheritdoc cref="PlayFabClientAPI.LinkSteamAccount"/>
         public static Task<PlayFabCommonResponse<LinkSteamAccountResult>> LinkSteamAccountAsync(LinkSteamAccountRequest request)
         {
