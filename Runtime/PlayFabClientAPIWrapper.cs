@@ -328,6 +328,21 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
             return taskCompletionSource.Task;
         }
         
+        /// <inheritdoc cref="PlayFabClientAPI.GetAccountInfo"/>
+        public static Task<PlayFabCommonResponse<GetAccountInfoResult>> GetAccountInfoAsync(
+            GetAccountInfoRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<GetAccountInfoResult>>();
+            PlayFabClientAPI.GetAccountInfo(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetAccountInfoResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetAccountInfoResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
         /// <inheritdoc cref="PlayFabClientAPI.GetTime"/>
         public static Task<PlayFabCommonResponse<GetTimeResult>> GetTimeAsync(
             GetTimeRequest request)
