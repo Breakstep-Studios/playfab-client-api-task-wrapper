@@ -7,6 +7,23 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
 {
     public static class PlayFabClientAPIWrapper
     {
+        /// <inheritdoc cref="PlayFabClientAPI.SendAccountRecoveryEmail"/>
+        public static Task<PlayFabCommonResponse<SendAccountRecoveryEmailResult>> SendAccountRecoveryEmailAsync(SendAccountRecoveryEmailRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<SendAccountRecoveryEmailResult>>();
+            PlayFabClientAPI.SendAccountRecoveryEmail(request,
+                (result) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<SendAccountRecoveryEmailResult>(result,null));
+                },
+                (error) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<SendAccountRecoveryEmailResult>(null,error));
+                }
+            );
+            return taskCompletionSource.Task;
+        }
+        
         /// <inheritdoc cref="PlayFabClientAPI.LoginWithCustomID"/>
         public static Task<PlayFabCommonResponse<LoginResult>> LoginWithCustomIdAsync(LoginWithCustomIDRequest request)
         {
