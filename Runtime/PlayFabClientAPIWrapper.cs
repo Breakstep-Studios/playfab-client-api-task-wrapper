@@ -24,6 +24,23 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
             return taskCompletionSource.Task;
         }
         
+        /// <inheritdoc cref="PlayFabClientAPI.UpdateUserTitleDisplayName"/>
+        public static Task<PlayFabCommonResponse<UpdateUserTitleDisplayNameResult>> UpdateUserTitleDisplayNameAsync(UpdateUserTitleDisplayNameRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<UpdateUserTitleDisplayNameResult>>();
+            PlayFabClientAPI.UpdateUserTitleDisplayName(request,
+                (result) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<UpdateUserTitleDisplayNameResult>(result,null));
+                },
+                (error) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<UpdateUserTitleDisplayNameResult>(null,error));
+                }
+            );
+            return taskCompletionSource.Task;
+        }
+        
         /// <inheritdoc cref="PlayFabClientAPI.LoginWithCustomID"/>
         public static Task<PlayFabCommonResponse<LoginResult>> LoginWithCustomIdAsync(LoginWithCustomIDRequest request)
         {
