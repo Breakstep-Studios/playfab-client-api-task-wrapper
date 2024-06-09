@@ -7,6 +7,23 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
 {
     public static class PlayFabClientAPIWrapper
     {
+        /// <inheritdoc cref="PlayFabClientAPI.UnlockContainerInstance"/>
+        public static Task<PlayFabCommonResponse<UnlockContainerItemResult>> UnlockContainerInstanceAsync(UnlockContainerInstanceRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<UnlockContainerItemResult>>();
+            PlayFabClientAPI.UnlockContainerInstance(request,
+                (result) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<UnlockContainerItemResult>(result,null));
+                },
+                (error) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<UnlockContainerItemResult>(null,error));
+                }
+            );
+            return taskCompletionSource.Task;
+        }
+        
         /// <inheritdoc cref="PlayFabClientAPI.SendAccountRecoveryEmail"/>
         public static Task<PlayFabCommonResponse<SendAccountRecoveryEmailResult>> SendAccountRecoveryEmailAsync(SendAccountRecoveryEmailRequest request)
         {
