@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using PlayFab;
 using PlayFab.ClientModels;
 using ThomasBrown.PlayFab;
@@ -7,6 +7,57 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
 {
     public static class PlayFabClientAPIWrapper
     {
+        /// <inheritdoc cref="PlayFabClientAPI.UnlockContainerInstance"/>
+        public static Task<PlayFabCommonResponse<UnlockContainerItemResult>> UnlockContainerInstanceAsync(UnlockContainerInstanceRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<UnlockContainerItemResult>>();
+            PlayFabClientAPI.UnlockContainerInstance(request,
+                (result) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<UnlockContainerItemResult>(result,null));
+                },
+                (error) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<UnlockContainerItemResult>(null,error));
+                }
+            );
+            return taskCompletionSource.Task;
+        }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.SendAccountRecoveryEmail"/>
+        public static Task<PlayFabCommonResponse<SendAccountRecoveryEmailResult>> SendAccountRecoveryEmailAsync(SendAccountRecoveryEmailRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<SendAccountRecoveryEmailResult>>();
+            PlayFabClientAPI.SendAccountRecoveryEmail(request,
+                (result) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<SendAccountRecoveryEmailResult>(result,null));
+                },
+                (error) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<SendAccountRecoveryEmailResult>(null,error));
+                }
+            );
+            return taskCompletionSource.Task;
+        }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.UpdateUserTitleDisplayName"/>
+        public static Task<PlayFabCommonResponse<UpdateUserTitleDisplayNameResult>> UpdateUserTitleDisplayNameAsync(UpdateUserTitleDisplayNameRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<UpdateUserTitleDisplayNameResult>>();
+            PlayFabClientAPI.UpdateUserTitleDisplayName(request,
+                (result) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<UpdateUserTitleDisplayNameResult>(result,null));
+                },
+                (error) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<UpdateUserTitleDisplayNameResult>(null,error));
+                }
+            );
+            return taskCompletionSource.Task;
+        }
+        
         /// <inheritdoc cref="PlayFabClientAPI.LoginWithCustomID"/>
         public static Task<PlayFabCommonResponse<LoginResult>> LoginWithCustomIdAsync(LoginWithCustomIDRequest request)
         {
@@ -53,6 +104,40 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
                 (error) =>
                 {
                     taskCompletionSource.SetResult(new PlayFabCommonResponse<LoginResult>(null,error));
+                }
+            );
+            return taskCompletionSource.Task;
+        }
+
+        /// <inheritdoc cref="PlayFabClientAPI.LoginWithSteam"/>
+        public static Task<PlayFabCommonResponse<LoginResult>> LoginWithSteamAsync(LoginWithSteamRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<LoginResult>>();
+            PlayFabClientAPI.LoginWithSteam(request,
+                (result) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<LoginResult>(result,null));
+                },
+                (error) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<LoginResult>(null,error));
+                }
+            );
+            return taskCompletionSource.Task;
+        }
+
+        /// <inheritdoc cref="PlayFabClientAPI.LinkSteamAccount"/>
+        public static Task<PlayFabCommonResponse<LinkSteamAccountResult>> LinkSteamAccountAsync(LinkSteamAccountRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<LinkSteamAccountResult>>();
+            PlayFabClientAPI.LinkSteamAccount(request,
+                (result) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<LinkSteamAccountResult>(result,null));
+                },
+                (error) =>
+                {
+                    taskCompletionSource.SetResult(new PlayFabCommonResponse<LinkSteamAccountResult>(null,error));
                 }
             );
             return taskCompletionSource.Task;
@@ -137,6 +222,21 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
             return taskCompletionSource.Task;
         }
 
+        /// <inheritdoc cref="PlayFabClientAPI.GetCharacterInventory"/>
+        public static Task<PlayFabCommonResponse<GetCharacterInventoryResult>> GetCharacterInventoryAsync(
+            GetCharacterInventoryRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<GetCharacterInventoryResult>>();
+            PlayFabClientAPI.GetCharacterInventory(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetCharacterInventoryResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetCharacterInventoryResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
         /// <inheritdoc cref="PlayFabClientAPI.GetLeaderboardAroundPlayer"/>
         public static Task<PlayFabCommonResponse<GetLeaderboardAroundPlayerResult>> GetLeaderboardAroundPlayerAsync(
             GetLeaderboardAroundPlayerRequest request)
@@ -177,6 +277,36 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
             }, (error) =>
             {
                 taskCompletionSource.SetResult(new PlayFabCommonResponse<GetCatalogItemsResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.GetUserInventory"/>
+        public static Task<PlayFabCommonResponse<GetUserInventoryResult>> GetUserInventoryAsync(
+            GetUserInventoryRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<GetUserInventoryResult>>();
+            PlayFabClientAPI.GetUserInventory(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetUserInventoryResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetUserInventoryResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.GrantCharacterToUser"/>
+        public static Task<PlayFabCommonResponse<GrantCharacterToUserResult>> GrantCharacterToUserAsync(
+            GrantCharacterToUserRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<GrantCharacterToUserResult>>();
+            PlayFabClientAPI.GrantCharacterToUser(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GrantCharacterToUserResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GrantCharacterToUserResult>(null, error));
             });
             return taskCompletionSource.Task;
         }
@@ -237,6 +367,66 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
             return taskCompletionSource.Task;
         }
         
+        /// <inheritdoc cref="PlayFabClientAPI.PurchaseItem"/>
+        public static Task<PlayFabCommonResponse<PurchaseItemResult>> PurchaseItemAsync(
+            PurchaseItemRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<PurchaseItemResult>>();
+            PlayFabClientAPI.PurchaseItem(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<PurchaseItemResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<PurchaseItemResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.ValidateGooglePlayPurchase"/>
+        public static Task<PlayFabCommonResponse<ValidateGooglePlayPurchaseResult>> ValidateGooglePlayPurchaseAsync(
+            ValidateGooglePlayPurchaseRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<ValidateGooglePlayPurchaseResult>>();
+            PlayFabClientAPI.ValidateGooglePlayPurchase(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<ValidateGooglePlayPurchaseResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<ValidateGooglePlayPurchaseResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.ValidateIOSReceipt"/>
+        public static Task<PlayFabCommonResponse<ValidateIOSReceiptResult>> ValidateIOSReceiptAsync(
+            ValidateIOSReceiptRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<ValidateIOSReceiptResult>>();
+            PlayFabClientAPI.ValidateIOSReceipt(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<ValidateIOSReceiptResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<ValidateIOSReceiptResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.GetAccountInfo"/>
+        public static Task<PlayFabCommonResponse<GetAccountInfoResult>> GetAccountInfoAsync(
+            GetAccountInfoRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<GetAccountInfoResult>>();
+            PlayFabClientAPI.GetAccountInfo(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetAccountInfoResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetAccountInfoResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
         /// <inheritdoc cref="PlayFabClientAPI.GetTime"/>
         public static Task<PlayFabCommonResponse<GetTimeResult>> GetTimeAsync(
             GetTimeRequest request)
@@ -248,6 +438,20 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
             }, (error) =>
             {
                 taskCompletionSource.SetResult(new PlayFabCommonResponse<GetTimeResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.GetStoreItems"/>
+        public static Task<PlayFabCommonResponse<GetStoreItemsResult>> GetStoreItemsAsync(GetStoreItemsRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<GetStoreItemsResult>>();
+            PlayFabClientAPI.GetStoreItems(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetStoreItemsResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetStoreItemsResult>(null, error));
             });
             return taskCompletionSource.Task;
         }
