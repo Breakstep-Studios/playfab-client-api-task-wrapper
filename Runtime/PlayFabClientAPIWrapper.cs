@@ -455,5 +455,33 @@ namespace BreakstepStudios.Scripts.Runtime.PlayFab
             });
             return taskCompletionSource.Task;
         }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.GetUserData"/>
+        public static Task<PlayFabCommonResponse<GetUserDataResult>> GetUserDataAsync(GetUserDataRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<GetUserDataResult>>();
+            PlayFabClientAPI.GetUserData(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetUserDataResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<GetUserDataResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
+        
+        /// <inheritdoc cref="PlayFabClientAPI.UpdateUserData"/>
+        public static Task<PlayFabCommonResponse<UpdateUserDataResult>> UpdateUserDataAsync(UpdateUserDataRequest request)
+        {
+            var taskCompletionSource = new TaskCompletionSource<PlayFabCommonResponse<UpdateUserDataResult>>();
+            PlayFabClientAPI.UpdateUserData(request, (result) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<UpdateUserDataResult>(result,null));
+            }, (error) =>
+            {
+                taskCompletionSource.SetResult(new PlayFabCommonResponse<UpdateUserDataResult>(null, error));
+            });
+            return taskCompletionSource.Task;
+        }
     }
 }
